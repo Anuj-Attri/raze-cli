@@ -1,2 +1,3 @@
 [console_scripts]
 raze = raze_cli.main:main
+raze-ui = raze_app.ui:main

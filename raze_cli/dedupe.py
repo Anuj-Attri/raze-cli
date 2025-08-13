@@ -11,11 +11,20 @@ def cluster_by_duplicate(files: List[FileMeta]) -> Dict[str, list[str]]:
             by_hash[f.hash].append(f.id)
     return {h: ids for h, ids in by_hash.items() if len(ids) > 1}
 
+def _base_bucket(mime: str) -> str:
+    top = (mime or "").split("/", 1)[0].lower()
+    if top == "image": return "Images"
+    if top == "audio": return "Audio"
+    if top == "video": return "Video"
+    if top in ("text", "application"): return "Documents"
+    return "Other"
+
 def cluster_by_type(files: List[FileMeta]) -> Dict[str, list[str]]:
-    by_type: DefaultDict[str, list[str]] = defaultdict(list)
+    """Group into base buckets used by the UI: Documents, Images, Audio, Video, Other."""
+    by_bucket: DefaultDict[str, list[str]] = defaultdict(list)
     for f in files:
-        by_type[f.type.split('/')[0]].append(f.id)  # coarse: text, image, audio, video, application
-    return dict(by_type)
+        by_bucket[_base_bucket(f.type)].append(f.id)
+    return dict(by_bucket)
 
 def cluster_by_age(files: List[FileMeta], now: float) -> Dict[str, list[str]]:
     buckets = {"new(<30d)": [], "stale(30-180d)": [], "old(>180d)": []}
@@ -33,4 +42,3 @@ def cluster_near_duplicate_text(simhash_items):
     """
     from .simhash import cluster_near_dups
     return cluster_near_dups(simhash_items, threshold=8)
-

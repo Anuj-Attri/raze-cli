@@ -8,10 +8,21 @@ version = "0.1.0"
 description = "Offline data reasoning and organization tool"
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "requests>=2.31",
+    "pillow>=10.0.0",
+    "scikit-learn>=1.3.0",
+]
+
+[project.optional-dependencies]
+ui = [
+    "PySide6>=6.6.0",
+]
 
 [project.scripts]
 raze = "raze_cli.main:main"
+raze-ui = "raze_app.ui:main"
+
 
 [tool.setuptools.packages.find]
-include = ["raze_cli*"]
+include = ["raze_cli*", "raze_app*"]

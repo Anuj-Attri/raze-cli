@@ -11,53 +11,46 @@
       }
     },
     {
-      "id": "dup:625813a9",
-      "kind": "duplicate_cluster",
-      "label": "Duplicates 625813a9",
+      "id": "cat:Documents",
+      "kind": "category",
+      "label": "Documents",
       "meta": {
-        "hash": "625813a9d4b67cceb0f2246744a59e7307a92839842f832195d8b6fa7b0cd076",
-        "file_ids": [
-          "86a8c23174cddefc521a3e03b6ed99bd",
-          "365956353bc1bb1701ee05be9bf5dad2"
-        ],
-        "summary": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup."
+        "subcount": 1
       },
       "reasoning": {
-        "rationale": "Exact duplicate content detected across 2 files (same sha256).",
-        "confidence": 0.95
+        "rationale": "Category bucket",
+        "confidence": 0.8
       }
     },
     {
-      "id": "type:application",
-      "kind": "type_cluster",
-      "label": "Type: application",
+      "id": "sub:Documents:All Documents",
+      "kind": "subcategory",
+      "label": "Documents \u2192 All Documents",
       "meta": {
         "file_ids": [
-          "fe7ff06db5752316546cb27bfb46f4b1",
-          "1dac9ddfddd476c855cefd21a3eef884",
-          "47dba4a38edf379fee3912a57f953883",
           "8e44afe4870f50eb2869e7bcfcb32b34"
         ],
-        "summary": "Files: 4, Total bytes: 2092 | Snippet[fe7ff0]: INFO start WARN cpu high"
+        "bucket": "Documents",
+        "summary": "1 files (fallback)."
       },
       "reasoning": {
-        "rationale": "Files grouped by coarse type 'application' for bulk actions and policy attachment. (4 items)",
-        "confidence": 0.7
+        "rationale": "Files categorized as Documents/All Documents",
+        "confidence": 0.75
       }
     },
     {
-      "id": "type:text",
+      "id": "type:Documents",
       "kind": "type_cluster",
-      "label": "Type: text",
+      "label": "Type: Documents",
       "meta": {
         "file_ids": [
-          "86a8c23174cddefc521a3e03b6ed99bd",
-          "365956353bc1bb1701ee05be9bf5dad2"
+          "8e44afe4870f50eb2869e7bcfcb32b34"
         ],
-        "summary": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup."
+        "bucket": "Documents",
+        "summary": "Files: 1, Total bytes: 2048"
       },
       "reasoning": {
-        "rationale": "Files grouped by coarse type 'text' for bulk actions and policy attachment. (2 items)",
+        "rationale": "Files grouped by coarse type 'Documents' for bulk actions and policy attachment. (1 items)",
         "confidence": 0.7
       }
     },
@@ -67,17 +60,12 @@
       "label": "Age: new(<30d)",
       "meta": {
         "file_ids": [
-          "fe7ff06db5752316546cb27bfb46f4b1",
-          "1dac9ddfddd476c855cefd21a3eef884",
-          "47dba4a38edf379fee3912a57f953883",
-          "86a8c23174cddefc521a3e03b6ed99bd",
-          "365956353bc1bb1701ee05be9bf5dad2",
           "8e44afe4870f50eb2869e7bcfcb32b34"
         ],
-        "summary": "Files: 6, Total bytes: 2186 | Snippet[fe7ff0]: INFO start WARN cpu high | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup."
+        "summary": "Files: 1, Total bytes: 2048"
       },
       "reasoning": {
-        "rationale": "Files in age bucket 'new(<30d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (6 items)",
+        "rationale": "Files in age bucket 'new(<30d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (1 items)",
         "confidence": 0.6
       }
     },
@@ -108,97 +96,6 @@
       }
     },
     {
-      "id": "neardup:0",
-      "kind": "near_duplicate_text",
-      "label": "Near-duplicates #0",
-      "meta": {
-        "file_ids": [
-          "86a8c23174cddefc521a3e03b6ed99bd",
-          "365956353bc1bb1701ee05be9bf5dad2"
-        ],
-        "summary": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup."
-      },
-      "reasoning": {
-        "rationale": "Exact duplicate content detected across 2 files (same sha256).",
-        "confidence": 0.95
-      }
-    },
-    {
-      "id": "fe7ff06db5752316546cb27bfb46f4b1",
-      "kind": "file",
-      "label": "demo_data\\meeting.log",
-      "meta": {
-        "size": 25,
-        "mtime": 1755127178.0,
-        "type": "application/octet-stream",
-        "hash": "4c0797c006d97f02efd59217ea48d43ef1aac626824f0c0c3b46ffd836d64eb3"
-      },
-      "reasoning": {
-        "rationale": "Raw file node",
-        "confidence": 1.0
-      }
-    },
-    {
-      "id": "1dac9ddfddd476c855cefd21a3eef884",
-      "kind": "file",
-      "label": "demo_data\\notes.tmp",
-      "meta": {
-        "size": 12,
-        "mtime": 1755127178.0,
-        "type": "application/octet-stream",
-        "hash": "44d9891e90269ebb04b3039acbb0d0688aa94b526e411f43343c36962db3d29c"
-      },
-      "reasoning": {
-        "rationale": "Raw file node",
-        "confidence": 1.0
-      }
-    },
-    {
-      "id": "47dba4a38edf379fee3912a57f953883",
-      "kind": "file",
-      "label": "demo_data\\old_backup.bak",
-      "meta": {
-        "size": 7,
-        "mtime": 1755127178.0,
-        "type": "application/octet-stream",
-        "hash": "777d90290a75129dbd33a5ac590f4633ec91d0eb381213761c728004961c3320"
-      },
-      "reasoning": {
-        "rationale": "Raw file node",
-        "confidence": 1.0
-      }
-    },
-    {
-      "id": "86a8c23174cddefc521a3e03b6ed99bd",
-      "kind": "file",
-      "label": "demo_data\\report_q1.txt",
-      "meta": {
-        "size": 47,
-        "mtime": 1755127178.0,
-        "type": "text/plain",
-        "hash": "625813a9d4b67cceb0f2246744a59e7307a92839842f832195d8b6fa7b0cd076"
-      },
-      "reasoning": {
-        "rationale": "Raw file node",
-        "confidence": 1.0
-      }
-    },
-    {
-      "id": "365956353bc1bb1701ee05be9bf5dad2",
-      "kind": "file",
-      "label": "demo_data\\report_q1_copy.txt",
-      "meta": {
-        "size": 47,
-        "mtime": 1755127178.0,
-        "type": "text/plain",
-        "hash": "625813a9d4b67cceb0f2246744a59e7307a92839842f832195d8b6fa7b0cd076"
-      },
-      "reasoning": {
-        "rationale": "Raw file node",
-        "confidence": 1.0
-      }
-    },
-    {
       "id": "8e44afe4870f50eb2869e7bcfcb32b34",
       "kind": "file",
       "label": "demo_data\\images\\img1.bin",
@@ -216,69 +113,33 @@
   ],
   "edges": [
     {
-      "id": "e-root-dup:625813a9",
+      "id": "e-root-cat:Documents",
       "source": "root",
-      "target": "dup:625813a9",
+      "target": "cat:Documents",
       "kind": "contains"
     },
     {
-      "id": "e-dup:625813a9-86a8c23174cddefc521a3e03b6ed99bd",
-      "source": "dup:625813a9",
-      "target": "86a8c23174cddefc521a3e03b6ed99bd",
+      "id": "e-cat:Documents-sub:Documents:All Documents",
+      "source": "cat:Documents",
+      "target": "sub:Documents:All Documents",
       "kind": "contains"
     },
     {
-      "id": "e-dup:625813a9-365956353bc1bb1701ee05be9bf5dad2",
-      "source": "dup:625813a9",
-      "target": "365956353bc1bb1701ee05be9bf5dad2",
-      "kind": "contains"
-    },
-    {
-      "id": "e-root-type:application",
-      "source": "root",
-      "target": "type:application",
-      "kind": "contains"
-    },
-    {
-      "id": "e-type:application-fe7ff06db5752316546cb27bfb46f4b1",
-      "source": "type:application",
-      "target": "fe7ff06db5752316546cb27bfb46f4b1",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-type:application-1dac9ddfddd476c855cefd21a3eef884",
-      "source": "type:application",
-      "target": "1dac9ddfddd476c855cefd21a3eef884",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-type:application-47dba4a38edf379fee3912a57f953883",
-      "source": "type:application",
-      "target": "47dba4a38edf379fee3912a57f953883",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-type:application-8e44afe4870f50eb2869e7bcfcb32b34",
-      "source": "type:application",
+      "id": "e-sub:Documents:All Documents-8e44afe4870f50eb2869e7bcfcb32b34",
+      "source": "sub:Documents:All Documents",
       "target": "8e44afe4870f50eb2869e7bcfcb32b34",
       "kind": "contains_sample"
     },
     {
-      "id": "e-root-type:text",
+      "id": "e-root-type:Documents",
       "source": "root",
-      "target": "type:text",
+      "target": "type:Documents",
       "kind": "contains"
     },
     {
-      "id": "e-type:text-86a8c23174cddefc521a3e03b6ed99bd",
-      "source": "type:text",
-      "target": "86a8c23174cddefc521a3e03b6ed99bd",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-type:text-365956353bc1bb1701ee05be9bf5dad2",
-      "source": "type:text",
-      "target": "365956353bc1bb1701ee05be9bf5dad2",
+      "id": "e-type:Documents-8e44afe4870f50eb2869e7bcfcb32b34",
+      "source": "type:Documents",
+      "target": "8e44afe4870f50eb2869e7bcfcb32b34",
       "kind": "contains_sample"
     },
     {
@@ -286,36 +147,6 @@
       "source": "root",
       "target": "age:new(<30d)",
       "kind": "contains"
-    },
-    {
-      "id": "e-age:new(<30d)-fe7ff06db5752316546cb27bfb46f4b1",
-      "source": "age:new(<30d)",
-      "target": "fe7ff06db5752316546cb27bfb46f4b1",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-age:new(<30d)-1dac9ddfddd476c855cefd21a3eef884",
-      "source": "age:new(<30d)",
-      "target": "1dac9ddfddd476c855cefd21a3eef884",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-age:new(<30d)-47dba4a38edf379fee3912a57f953883",
-      "source": "age:new(<30d)",
-      "target": "47dba4a38edf379fee3912a57f953883",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-age:new(<30d)-86a8c23174cddefc521a3e03b6ed99bd",
-      "source": "age:new(<30d)",
-      "target": "86a8c23174cddefc521a3e03b6ed99bd",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-age:new(<30d)-365956353bc1bb1701ee05be9bf5dad2",
-      "source": "age:new(<30d)",
-      "target": "365956353bc1bb1701ee05be9bf5dad2",
-      "kind": "contains_sample"
     },
     {
       "id": "e-age:new(<30d)-8e44afe4870f50eb2869e7bcfcb32b34",
@@ -334,24 +165,6 @@
       "source": "root",
       "target": "age:old(>180d)",
       "kind": "contains"
-    },
-    {
-      "id": "e-root-neardup:0",
-      "source": "root",
-      "target": "neardup:0",
-      "kind": "contains"
-    },
-    {
-      "id": "e-neardup:0-86a8c23174cddefc521a3e03b6ed99bd",
-      "source": "neardup:0",
-      "target": "86a8c23174cddefc521a3e03b6ed99bd",
-      "kind": "contains_sample"
-    },
-    {
-      "id": "e-neardup:0-365956353bc1bb1701ee05be9bf5dad2",
-      "source": "neardup:0",
-      "target": "365956353bc1bb1701ee05be9bf5dad2",
-      "kind": "contains_sample"
     }
   ]
 }

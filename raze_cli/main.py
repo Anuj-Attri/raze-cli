@@ -1,97 +1,79 @@
+# raze_cli/main.py
 from __future__ import annotations
-import argparse, json, time
+import argparse, json, time, os, sys
 from pathlib import Path
-from .ingest import scan_directory
-from .dedupe import cluster_by_duplicate, cluster_by_type, cluster_by_age, cluster_near_duplicate_text
-from .graph import build_graph
-from .extract import extract_text_snippet
-from .simhash import simhash64
-from .summarize import summarize_cluster
+
+# Core pipeline (single call that does: ingest -> extract -> LLM discover -> graph -> plan)
+try:
+    from .pipeline import run_pipeline  # preferred unified path
+except Exception:
+    # fallback if pipeline isn't created yet: raise a helpful error
+    raise SystemExit(
+        "[ERROR] raze_cli.pipeline.run_pipeline not found.\n"
+        "Create raze_cli/pipeline.py as discussed, or run the older CLI version."
+    )
+
+def write_file(path: str, obj) -> None:
+    Path(path).write_text(json.dumps(obj, indent=2), encoding="utf-8")
 
 def main():
-    ap = argparse.ArgumentParser(description="RAZE CLI — scan folder, build reasoning graph (stub), and plan.")
-    ap.add_argument("--path", required=True, help="Folder to scan")
-    ap.add_argument("--out", required=True, help="Output graph.json")
-    ap.add_argument("--plan", required=True, help="Output plan.json (dry-run suggestions)")
-    ap.add_argument("--summaries", default="summaries.json", help="Output summaries.json (cluster summaries)")
+    ap = argparse.ArgumentParser(
+        description="RAZE — offline copilot to organize, cluster, and refactor files (Ollama/GPT-OSS optional)."
+    )
+    # I/O
+    ap.add_argument("--path", help="Folder to scan (ignored if --ui without prompt)", default=None)
+    ap.add_argument("--out", default="graph.json", help="Output graph JSON")
+    ap.add_argument("--plan", default="plan.json", help="Output plan JSON")
+    ap.add_argument("--summaries", default="summaries.json", help="Output summaries JSON")
+    # LLM (optional)
+    ap.add_argument("--llm-endpoint", help="OpenAI-compatible base URL (e.g., http://localhost:11434/v1)")
+    ap.add_argument("--llm-model", help="Model name served at the endpoint (e.g., llama3 or gpt-oss-20b)")
+    ap.add_argument("--api-key", default=os.getenv("OPENAI_API_KEY", ""), help="Bearer token if required by your server")
+    # Costing
+    ap.add_argument("--rate", type=float, default=0.0, help="Storage cost per GB per month (e.g., 0.023 for S3)")
+    # UI
+    ap.add_argument("--ui", action="store_true", help="Launch the native UI (PySide6).")
+    # Prompt mode (future: free-form prompt; for now we accept path via CLI or UI)
     args = ap.parse_args()
 
+    if args.ui:
+        # Launch the native PySide6 app; it imports run_pipeline and calls it internally.
+        try:
+            from raze_app.ui import main as ui_main
+        except Exception as e:
+            raise SystemExit(
+                "[ERROR] Native UI not found or PySide6 missing.\n"
+                "Install PySide6:  pip install PySide6\n"
+                f"Import error: {e}"
+            )
+        ui_main()
+        return
+
+    if not args.path:
+        raise SystemExit("[ERROR] --path is required in CLI mode (or pass --ui to launch the native app).")
+
     t0 = time.time()
-    files = scan_directory(args.path)
-    now = time.time()
+    result = run_pipeline(
+        path=args.path,
+        llm_endpoint=args.llm_endpoint,
+        llm_model=args.llm_model,
+        api_key=args.api_key or None,
+        storage_rate_per_gb=args.rate,
+    )
 
-    dup = cluster_by_duplicate(files)
-    typ = cluster_by_type(files)
-    age = cluster_by_age(files, now)
+    write_file(args.out, result["graph"])
+    write_file(args.plan, result["plan"])
+    write_file(args.summaries, result["summaries"])
 
-    # --- Phase 2: text snippets + simhash for near-dup text ---
-    id_to_file = {f.id: f for f in files}
-    text_snippets: dict[str, str] = {}
-    simhash_items = []
-    for f in files:
-        snippet = extract_text_snippet(f.path, f.type) or ""
-        if snippet:
-            text_snippets[f.id] = snippet[:2000]
-            try:
-                simhash_items.append((f.id, simhash64(snippet)))
-            except Exception:
-                pass
-
-    near_dup_clusters = cluster_near_duplicate_text(simhash_items) if simhash_items else []
-
-    # Summaries per cluster/node id
-    summaries: dict[str, str] = {}
-    for h, ids in dup.items():
-        summaries[f"dup:{h[:8]}"] = summarize_cluster(ids, id_to_file, text_snippets)
-    for t, ids in typ.items():
-        summaries[f"type:{t}"] = summarize_cluster(ids, id_to_file, text_snippets)
-    for label, ids in age.items():
-        summaries[f"age:{label}"] = summarize_cluster(ids, id_to_file, text_snippets)
-    for idx, ids in enumerate(near_dup_clusters):
-        summaries[f"neardup:{idx}"] = summarize_cluster(ids, id_to_file, text_snippets)
-
-    graph = build_graph(files, dup, typ, age,
-                        near_dup_clusters=near_dup_clusters,
-                        summaries=summaries)
-
-    # simple plan: suggest deleting duplicates (keep 1), temp files, and near-dups (keep 1)
-    suggested_delete_ids = set()
-    for h, ids in dup.items():
-        for fid in ids[1:]:
-            suggested_delete_ids.add(fid)
-
-    # near-duplicate clusters -> keep the first of each
-    for ids in near_dup_clusters:
-        for fid in ids[1:]:
-            suggested_delete_ids.add(fid)
-
-    # temp-ish file names by suffix
-    for f in files:
-        name = Path(f.path).name.lower()
-        if any(name.endswith(suf) for suf in [".tmp", ".log", ".bak", ".old", "~"]):
-            suggested_delete_ids.add(f.id)
-
-    # write outputs
-    id_to_path = {f.id: f.path for f in files}
-    plan = {
-        "summary": {
-            "files_scanned": len(files),
-            "duplicate_clusters": len(dup),
-            "near_duplicate_clusters": len(near_dup_clusters),
-            "suggested_deletions": len(suggested_delete_ids),
-            "elapsed_sec": round(time.time() - t0, 2),
-        },
-        "items": [{"id": fid, "path": id_to_path.get(fid)} for fid in sorted(suggested_delete_ids)],
-    }
-
-    Path(args.out).write_text(json.dumps(graph, indent=2), encoding="utf-8")
-    Path(args.plan).write_text(json.dumps(plan, indent=2), encoding="utf-8")
-    Path(args.summaries).write_text(json.dumps(summaries, indent=2), encoding="utf-8")
-
-    print(f"[OK] Graph -> {args.out}")
-    print(f"[OK] Plan  -> {args.plan}")
+    elapsed = round(time.time() - t0, 2)
+    print(f"[OK] Graph     -> {args.out}")
+    print(f"[OK] Plan      -> {args.plan}")
     print(f"[OK] Summaries -> {args.summaries}")
-    print(f"[INFO] Scanned {len(files)} files in {round(time.time() - t0, 2)}s")
+    print(f"[INFO] Scanned '{args.path}' in {elapsed}s")
+    if args.llm_endpoint and args.llm_model:
+        print(f"[INFO] LLM categories: endpoint={args.llm_endpoint} model={args.llm_model}")
+    if args.rate:
+        print(f"[INFO] Costing at ${args.rate}/GB applied")
 
 if __name__ == "__main__":
     main()

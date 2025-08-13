@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>RAZE Graph Viewer (Offline)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./viewer.css" />
+</head>
+<body>
+  <header>
+    <h1>RAZE — Reasoning Graph Viewer</h1>
+    <div class="row">
+      <button id="load-local">Load graph.json (same folder)</button>
+      <label class="filepick">
+        or pick files:
+        <input type="file" id="file-graph" accept=".json" />
+        <input type="file" id="file-summaries" accept=".json" />
+      </label>
+      <div class="spacer"></div>
+      <label>Filter:
+        <select id="filter-kind">
+          <option value="all">All kinds</option>
+          <option value="duplicate_cluster">Exact duplicates</option>
+          <option value="near_duplicate_text">Near-duplicates</option>
+          <option value="type_cluster">Type clusters</option>
+          <option value="age_bucket">Age buckets</option>
+          <option value="file">Files (sample)</option>
+        </select>
+      </label>
+      <label>Min confidence:
+        <input id="min-conf" type="number" min="0" max="1" step="0.05" value="0" />
+      </label>
+      <input id="search" type="search" placeholder="Search label/path..." />
+    </div>
+    <label>Edges:
+        <select id="edge-mode">
+            <option value="selected">Selected</option>
+            <option value="all">All</option>
+            <option value="none" selected>None</option>
+        </select>
+        </label>
+
+  </header>
+
+  <main>
+    <aside id="inspector">
+      <h2>Details</h2>
+      <div id="details">Click a node.</div>
+    </aside>
+    <section id="canvas-wrap">
+      <svg id="canvas" width="2000" height="1200" viewBox="0 0 2000 1200" role="img" aria-label="Graph canvas"></svg>
+    </section>
+  </main>
+
+  <footer>
+    <small>Offline viewer — no network calls. Drop this folder next to <code>graph.json</code> / <code>summaries.json</code> and click “Load”.</small>
+  </footer>
+
+  <script src="./viewer.js"></script>
+</body>
+</html>

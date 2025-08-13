@@ -1,0 +1,6 @@
+requests>=2.31
+pillow>=10.0.0
+scikit-learn>=1.3.0
+
+[ui]
+PySide6>=6.6.0

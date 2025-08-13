@@ -1,27 +1,22 @@
 {
   "summary": {
-    "files_scanned": 6,
-    "duplicate_clusters": 1,
-    "near_duplicate_clusters": 1,
-    "suggested_deletions": 4,
-    "elapsed_sec": 0.04
+    "files_scanned": 1,
+    "duplicate_clusters": 0,
+    "near_duplicate_clusters": 0,
+    "image_similarity_clusters": 0,
+    "suggested_deletions": 0,
+    "suggested_moves": 1,
+    "elapsed_sec": 0.04,
+    "storage_rate_per_gb": 0.0
   },
-  "items": [
+  "moves": [
     {
-      "id": "1dac9ddfddd476c855cefd21a3eef884",
-      "path": "demo_data\\notes.tmp"
-    },
-    {
-      "id": "365956353bc1bb1701ee05be9bf5dad2",
-      "path": "demo_data\\report_q1_copy.txt"
-    },
-    {
-      "id": "47dba4a38edf379fee3912a57f953883",
-      "path": "demo_data\\old_backup.bak"
-    },
-    {
-      "id": "fe7ff06db5752316546cb27bfb46f4b1",
-      "path": "demo_data\\meeting.log"
+      "id": "8e44afe4870f50eb2869e7bcfcb32b34",
+      "from": "demo_data\\images\\img1.bin",
+      "to": "Documents/all-documents/",
+      "reason": "Documents:All Documents"
     }
-  ]
+  ],
+  "deletes": [],
+  "cluster_costs": {}
 }
