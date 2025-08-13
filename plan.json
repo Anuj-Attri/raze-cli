@@ -1,0 +1,26 @@
+{
+  "summary": {
+    "files_scanned": 6,
+    "duplicate_clusters": 1,
+    "suggested_deletions": 4,
+    "elapsed_sec": 0.04
+  },
+  "items": [
+    {
+      "id": "1dac9ddfddd476c855cefd21a3eef884",
+      "path": "demo_data\\notes.tmp"
+    },
+    {
+      "id": "365956353bc1bb1701ee05be9bf5dad2",
+      "path": "demo_data\\report_q1_copy.txt"
+    },
+    {
+      "id": "47dba4a38edf379fee3912a57f953883",
+      "path": "demo_data\\old_backup.bak"
+    },
+    {
+      "id": "fe7ff06db5752316546cb27bfb46f4b1",
+      "path": "demo_data\\meeting.log"
+    }
+  ]
+}

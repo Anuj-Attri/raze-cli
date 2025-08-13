@@ -1,0 +1,317 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "kind": "root",
+      "label": "Scan Root",
+      "meta": {},
+      "reasoning": {
+        "rationale": "Root of scan.",
+        "confidence": 1.0
+      }
+    },
+    {
+      "id": "dup:625813a9",
+      "kind": "duplicate_cluster",
+      "label": "Duplicates 625813a9",
+      "meta": {
+        "hash": "625813a9d4b67cceb0f2246744a59e7307a92839842f832195d8b6fa7b0cd076",
+        "file_ids": [
+          "86a8c23174cddefc521a3e03b6ed99bd",
+          "365956353bc1bb1701ee05be9bf5dad2"
+        ]
+      },
+      "reasoning": {
+        "rationale": "Exact duplicate content detected across 2 files (same sha256).",
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "type:application",
+      "kind": "type_cluster",
+      "label": "Type: application",
+      "meta": {
+        "file_ids": [
+          "fe7ff06db5752316546cb27bfb46f4b1",
+          "1dac9ddfddd476c855cefd21a3eef884",
+          "47dba4a38edf379fee3912a57f953883",
+          "8e44afe4870f50eb2869e7bcfcb32b34"
+        ]
+      },
+      "reasoning": {
+        "rationale": "Files grouped by coarse type 'application' for bulk actions and policy attachment. (4 items)",
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "type:text",
+      "kind": "type_cluster",
+      "label": "Type: text",
+      "meta": {
+        "file_ids": [
+          "86a8c23174cddefc521a3e03b6ed99bd",
+          "365956353bc1bb1701ee05be9bf5dad2"
+        ]
+      },
+      "reasoning": {
+        "rationale": "Files grouped by coarse type 'text' for bulk actions and policy attachment. (2 items)",
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "age:new(<30d)",
+      "kind": "age_bucket",
+      "label": "Age: new(<30d)",
+      "meta": {
+        "file_ids": [
+          "fe7ff06db5752316546cb27bfb46f4b1",
+          "1dac9ddfddd476c855cefd21a3eef884",
+          "47dba4a38edf379fee3912a57f953883",
+          "86a8c23174cddefc521a3e03b6ed99bd",
+          "365956353bc1bb1701ee05be9bf5dad2",
+          "8e44afe4870f50eb2869e7bcfcb32b34"
+        ]
+      },
+      "reasoning": {
+        "rationale": "Files in age bucket 'new(<30d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (6 items)",
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "age:stale(30-180d)",
+      "kind": "age_bucket",
+      "label": "Age: stale(30-180d)",
+      "meta": {
+        "file_ids": []
+      },
+      "reasoning": {
+        "rationale": "Files in age bucket 'stale(30-180d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (0 items)",
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "age:old(>180d)",
+      "kind": "age_bucket",
+      "label": "Age: old(>180d)",
+      "meta": {
+        "file_ids": []
+      },
+      "reasoning": {
+        "rationale": "Files in age bucket 'old(>180d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (0 items)",
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "fe7ff06db5752316546cb27bfb46f4b1",
+      "kind": "file",
+      "label": "demo_data\\meeting.log",
+      "meta": {
+        "size": 25,
+        "mtime": 1755127178.0,
+        "type": "application/octet-stream",
+        "hash": "4c0797c006d97f02efd59217ea48d43ef1aac626824f0c0c3b46ffd836d64eb3"
+      },
+      "reasoning": {
+        "rationale": "Raw file node",
+        "confidence": 1.0
+      }
+    },
+    {
+      "id": "1dac9ddfddd476c855cefd21a3eef884",
+      "kind": "file",
+      "label": "demo_data\\notes.tmp",
+      "meta": {
+        "size": 12,
+        "mtime": 1755127178.0,
+        "type": "application/octet-stream",
+        "hash": "44d9891e90269ebb04b3039acbb0d0688aa94b526e411f43343c36962db3d29c"
+      },
+      "reasoning": {
+        "rationale": "Raw file node",
+        "confidence": 1.0
+      }
+    },
+    {
+      "id": "47dba4a38edf379fee3912a57f953883",
+      "kind": "file",
+      "label": "demo_data\\old_backup.bak",
+      "meta": {
+        "size": 7,
+        "mtime": 1755127178.0,
+        "type": "application/octet-stream",
+        "hash": "777d90290a75129dbd33a5ac590f4633ec91d0eb381213761c728004961c3320"
+      },
+      "reasoning": {
+        "rationale": "Raw file node",
+        "confidence": 1.0
+      }
+    },
+    {
+      "id": "86a8c23174cddefc521a3e03b6ed99bd",
+      "kind": "file",
+      "label": "demo_data\\report_q1.txt",
+      "meta": {
+        "size": 47,
+        "mtime": 1755127178.0,
+        "type": "text/plain",
+        "hash": "625813a9d4b67cceb0f2246744a59e7307a92839842f832195d8b6fa7b0cd076"
+      },
+      "reasoning": {
+        "rationale": "Raw file node",
+        "confidence": 1.0
+      }
+    },
+    {
+      "id": "365956353bc1bb1701ee05be9bf5dad2",
+      "kind": "file",
+      "label": "demo_data\\report_q1_copy.txt",
+      "meta": {
+        "size": 47,
+        "mtime": 1755127178.0,
+        "type": "text/plain",
+        "hash": "625813a9d4b67cceb0f2246744a59e7307a92839842f832195d8b6fa7b0cd076"
+      },
+      "reasoning": {
+        "rationale": "Raw file node",
+        "confidence": 1.0
+      }
+    },
+    {
+      "id": "8e44afe4870f50eb2869e7bcfcb32b34",
+      "kind": "file",
+      "label": "demo_data\\images\\img1.bin",
+      "meta": {
+        "size": 2048,
+        "mtime": 1755127178.0,
+        "type": "application/octet-stream",
+        "hash": "5e7714856962b963ca06c5089b28dd14b64f10dccb58044cda815d13a7d7d0af"
+      },
+      "reasoning": {
+        "rationale": "Raw file node",
+        "confidence": 1.0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-root-dup:625813a9",
+      "source": "root",
+      "target": "dup:625813a9",
+      "kind": "contains"
+    },
+    {
+      "id": "e-dup:625813a9-86a8c23174cddefc521a3e03b6ed99bd",
+      "source": "dup:625813a9",
+      "target": "86a8c23174cddefc521a3e03b6ed99bd",
+      "kind": "contains"
+    },
+    {
+      "id": "e-dup:625813a9-365956353bc1bb1701ee05be9bf5dad2",
+      "source": "dup:625813a9",
+      "target": "365956353bc1bb1701ee05be9bf5dad2",
+      "kind": "contains"
+    },
+    {
+      "id": "e-root-type:application",
+      "source": "root",
+      "target": "type:application",
+      "kind": "contains"
+    },
+    {
+      "id": "e-type:application-fe7ff06db5752316546cb27bfb46f4b1",
+      "source": "type:application",
+      "target": "fe7ff06db5752316546cb27bfb46f4b1",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-type:application-1dac9ddfddd476c855cefd21a3eef884",
+      "source": "type:application",
+      "target": "1dac9ddfddd476c855cefd21a3eef884",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-type:application-47dba4a38edf379fee3912a57f953883",
+      "source": "type:application",
+      "target": "47dba4a38edf379fee3912a57f953883",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-type:application-8e44afe4870f50eb2869e7bcfcb32b34",
+      "source": "type:application",
+      "target": "8e44afe4870f50eb2869e7bcfcb32b34",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-root-type:text",
+      "source": "root",
+      "target": "type:text",
+      "kind": "contains"
+    },
+    {
+      "id": "e-type:text-86a8c23174cddefc521a3e03b6ed99bd",
+      "source": "type:text",
+      "target": "86a8c23174cddefc521a3e03b6ed99bd",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-type:text-365956353bc1bb1701ee05be9bf5dad2",
+      "source": "type:text",
+      "target": "365956353bc1bb1701ee05be9bf5dad2",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-root-age:new(<30d)",
+      "source": "root",
+      "target": "age:new(<30d)",
+      "kind": "contains"
+    },
+    {
+      "id": "e-age:new(<30d)-fe7ff06db5752316546cb27bfb46f4b1",
+      "source": "age:new(<30d)",
+      "target": "fe7ff06db5752316546cb27bfb46f4b1",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-age:new(<30d)-1dac9ddfddd476c855cefd21a3eef884",
+      "source": "age:new(<30d)",
+      "target": "1dac9ddfddd476c855cefd21a3eef884",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-age:new(<30d)-47dba4a38edf379fee3912a57f953883",
+      "source": "age:new(<30d)",
+      "target": "47dba4a38edf379fee3912a57f953883",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-age:new(<30d)-86a8c23174cddefc521a3e03b6ed99bd",
+      "source": "age:new(<30d)",
+      "target": "86a8c23174cddefc521a3e03b6ed99bd",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-age:new(<30d)-365956353bc1bb1701ee05be9bf5dad2",
+      "source": "age:new(<30d)",
+      "target": "365956353bc1bb1701ee05be9bf5dad2",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-age:new(<30d)-8e44afe4870f50eb2869e7bcfcb32b34",
+      "source": "age:new(<30d)",
+      "target": "8e44afe4870f50eb2869e7bcfcb32b34",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-root-age:stale(30-180d)",
+      "source": "root",
+      "target": "age:stale(30-180d)",
+      "kind": "contains"
+    },
+    {
+      "id": "e-root-age:old(>180d)",
+      "source": "root",
+      "target": "age:old(>180d)",
+      "kind": "contains"
+    }
+  ]
+}
