@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raze"
+version = "0.1.0"
+description = "Offline data reasoning and organization tool"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+raze = "raze_cli.main:main"
+
+[tool.setuptools.packages.find]
+include = ["raze_cli*"]

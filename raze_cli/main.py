@@ -7,7 +7,7 @@ from .ingest import scan_directory
 from .dedupe import cluster_by_duplicate, cluster_by_type, cluster_by_age
 from .graph import build_graph
 
-
+# raze --path demo_data --out graph.json --plan plan.json
 
 def main():
     ap = argparse.ArgumentParser(description="RAZE CLI — scan folder, build reasoning graph (stub), and plan.")
