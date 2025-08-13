@@ -1,0 +1,9 @@
+{
+  "dup:625813a9": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup.",
+  "type:application": "Files: 4, Total bytes: 2092 | Snippet[fe7ff0]: INFO start WARN cpu high",
+  "type:text": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup.",
+  "age:new(<30d)": "Files: 6, Total bytes: 2186 | Snippet[fe7ff0]: INFO start WARN cpu high | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup.",
+  "age:stale(30-180d)": "Files: 0, Total bytes: 0",
+  "age:old(>180d)": "Files: 0, Total bytes: 0",
+  "neardup:0": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup."
+}

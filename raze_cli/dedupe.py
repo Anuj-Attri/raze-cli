@@ -1,9 +1,7 @@
 from __future__ import annotations
 from typing import List, Dict, Any, DefaultDict
 from collections import defaultdict
-
 from .ingest import FileMeta
-
 
 def cluster_by_duplicate(files: List[FileMeta]) -> Dict[str, list[str]]:
     """Return mapping hash -> list[file_id] for files with same content hash (non-None)."""
@@ -27,3 +25,12 @@ def cluster_by_age(files: List[FileMeta], now: float) -> Dict[str, list[str]]:
         elif age_days < 180: buckets["stale(30-180d)"].append(f.id)
         else: buckets["old(>180d)"].append(f.id)
     return buckets
+
+def cluster_near_duplicate_text(simhash_items):
+    """
+    simhash_items: list of (file_id, simhash64 int)
+    Returns list of clusters (list of file_id lists).
+    """
+    from .simhash import cluster_near_dups
+    return cluster_near_dups(simhash_items, threshold=8)
+

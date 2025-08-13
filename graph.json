@@ -19,7 +19,8 @@
         "file_ids": [
           "86a8c23174cddefc521a3e03b6ed99bd",
           "365956353bc1bb1701ee05be9bf5dad2"
-        ]
+        ],
+        "summary": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup."
       },
       "reasoning": {
         "rationale": "Exact duplicate content detected across 2 files (same sha256).",
@@ -36,7 +37,8 @@
           "1dac9ddfddd476c855cefd21a3eef884",
           "47dba4a38edf379fee3912a57f953883",
           "8e44afe4870f50eb2869e7bcfcb32b34"
-        ]
+        ],
+        "summary": "Files: 4, Total bytes: 2092 | Snippet[fe7ff0]: INFO start WARN cpu high"
       },
       "reasoning": {
         "rationale": "Files grouped by coarse type 'application' for bulk actions and policy attachment. (4 items)",
@@ -51,7 +53,8 @@
         "file_ids": [
           "86a8c23174cddefc521a3e03b6ed99bd",
           "365956353bc1bb1701ee05be9bf5dad2"
-        ]
+        ],
+        "summary": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup."
       },
       "reasoning": {
         "rationale": "Files grouped by coarse type 'text' for bulk actions and policy attachment. (2 items)",
@@ -70,7 +73,8 @@
           "86a8c23174cddefc521a3e03b6ed99bd",
           "365956353bc1bb1701ee05be9bf5dad2",
           "8e44afe4870f50eb2869e7bcfcb32b34"
-        ]
+        ],
+        "summary": "Files: 6, Total bytes: 2186 | Snippet[fe7ff0]: INFO start WARN cpu high | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup."
       },
       "reasoning": {
         "rationale": "Files in age bucket 'new(<30d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (6 items)",
@@ -82,7 +86,8 @@
       "kind": "age_bucket",
       "label": "Age: stale(30-180d)",
       "meta": {
-        "file_ids": []
+        "file_ids": [],
+        "summary": "Files: 0, Total bytes: 0"
       },
       "reasoning": {
         "rationale": "Files in age bucket 'stale(30-180d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (0 items)",
@@ -94,11 +99,28 @@
       "kind": "age_bucket",
       "label": "Age: old(>180d)",
       "meta": {
-        "file_ids": []
+        "file_ids": [],
+        "summary": "Files: 0, Total bytes: 0"
       },
       "reasoning": {
         "rationale": "Files in age bucket 'old(>180d)'. Old/stale buckets are strong candidates for tiering or deletion with review. (0 items)",
         "confidence": 0.6
+      }
+    },
+    {
+      "id": "neardup:0",
+      "kind": "near_duplicate_text",
+      "label": "Near-duplicates #0",
+      "meta": {
+        "file_ids": [
+          "86a8c23174cddefc521a3e03b6ed99bd",
+          "365956353bc1bb1701ee05be9bf5dad2"
+        ],
+        "summary": "Files: 2, Total bytes: 94 | Snippet[86a8c2]: Revenue up 12%. See /tmp builds. TODO cleanup. | Snippet[365956]: Revenue up 12%. See /tmp builds. TODO cleanup."
+      },
+      "reasoning": {
+        "rationale": "Exact duplicate content detected across 2 files (same sha256).",
+        "confidence": 0.95
       }
     },
     {
@@ -312,6 +334,24 @@
       "source": "root",
       "target": "age:old(>180d)",
       "kind": "contains"
+    },
+    {
+      "id": "e-root-neardup:0",
+      "source": "root",
+      "target": "neardup:0",
+      "kind": "contains"
+    },
+    {
+      "id": "e-neardup:0-86a8c23174cddefc521a3e03b6ed99bd",
+      "source": "neardup:0",
+      "target": "86a8c23174cddefc521a3e03b6ed99bd",
+      "kind": "contains_sample"
+    },
+    {
+      "id": "e-neardup:0-365956353bc1bb1701ee05be9bf5dad2",
+      "source": "neardup:0",
+      "target": "365956353bc1bb1701ee05be9bf5dad2",
+      "kind": "contains_sample"
     }
   ]
 }
